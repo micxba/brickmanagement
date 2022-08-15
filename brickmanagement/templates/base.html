@@ -17,6 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# Global stylesheets #}
+        <script src="https://kit.fontawesome.com/04aabd75a3.js" crossorigin="anonymous"></script>
         <link href="https://bootswatch.com/5/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{% static 'css/brickmanagement.css' %}">
 
@@ -30,7 +31,7 @@
         <!-- NAV header from bootswatch.com -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">{{ self.banner_sitename }}</a>
+              <a class="navbar-brand" href="#">{{settings.site_settings.GlobalSiteSettings.websitename}}</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -78,10 +79,10 @@
               border-radius: .3rem;  
             }
         </style>
-        {% image self.banner_image width-1500 as img %}
+        {% image settings.site_settings.GlobalSiteSettings.site_banner_image  width-1500 as img %}
         <div class="jumbotron" style="background-image: url('{{ img.url }}'); background-size: cover; background-repeat: no-repeat;background-position: center center; color: #fff !important;">
-          <h1 class="display-4">{{ self.banner_title }}</h1>
-          <p class="lead">{{ self.banner_subtitle|richtext }}</p>
+          <h1 class="display-4">{{ settings.site_settings.GlobalSiteSettings.websitename }}</h1>
+          {% if settings.site_settings.GlobalSiteSettings.site_subtitle %}<p class="lead">{{ settings.site_settings.GlobalSiteSettings.site_subtitle }}</p>{% endif %}
           {% if self.banner_cta %}
               <a class="btn btn-primary btn-lg" href="#" role="button">@todo</a>
           {% endif %}
@@ -96,5 +97,72 @@
         {% block extra_js %}
         {# Override this in templates to add extra javascript #}
         {% endblock %}
+        <!--Footer Section-->
+          <footer class="bg-light text-center text-white">
+          <!-- Grid container -->
+          <div class="container p-4 pb-0">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+              {% if settings.site_settings.SocialMediaSettings.facebook %}
+              <!-- Facebook -->
+              <a
+                class="btn btn-primary btn-floating m-1"
+                style="background-color: #3b5998;"
+                href="{{ settings.site_settings.SocialMediaSettings.facebook }}"
+                role="button"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              {% endif %}
+              {% if settings.site_settings.SocialMediaSettings.twitter %}
+              <!-- Twitter -->
+              <a
+                class="btn btn-primary btn-floating m-1"
+                style="background-color: #55acee;"
+                href="{{ settings.site_settings.SocialMediaSettings.twitter }}"
+                role="button"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              {% endif %}
+              {% if settings.site_settings.SocialMediaSettings.youtube %}
+              <!-- YouTube -->
+              <a
+                class="btn btn-primary btn-floating m-1"
+                style="background-color: #dd4b39;"
+                href="{{ settings.site_settings.SocialMediaSettings.youtube }}"
+                role="button"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              {% endif %}
+              {% if settings.site_settings.SocialMediaSettings.instagram %}
+              <!-- Instagram -->
+              <a
+                class="btn btn-primary btn-floating m-1"
+                style="background-color: #ac2bac;"
+                href="{{ settings.site_settings.SocialMediaSettings.instagram }}"
+                role="button"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              {% endif %}
+              {% if settings.site_settings.SocialMediaSettings.github %}
+              <!-- Github -->
+              <a
+                class="btn btn-primary btn-floating m-1"
+                style="background-color: #333333;"
+                href="{{ settings.site_settings.SocialMediaSettings.github }}"
+                role="button"
+                ><i class="fab fa-github"></i
+              ></a>
+              {% endif %}
+            </section>
+            <!-- Section: Social media -->
+          </div>
+          <!-- Grid container -->
+
+          <!-- Copyright -->
+          <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright: {{settings.site_settings.GlobalSiteSettings.websitename}}
+          </div>
+          <!-- Copyright -->
+        </footer>
     </body>
 </html>
