@@ -25,7 +25,7 @@ class BlogListingPage(Page):
     ]
 
     def get_context(self, request, *args, **kwargs):
-        """Adding customer stuff to our context"""
+        """Adding custom stuff to our context"""
         context = super().get_context(request, *args, **kwargs)
         context["posts"]=BlogDetailPage.objects.live().public()
         return context

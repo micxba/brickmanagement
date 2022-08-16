@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load wagtailimages_tags wagtailcore_tags %}
+
+
+
+{% block content %}
+
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        {% image self.set_image fill-600x600 as img %}
+        <img src="{{ img.url }}" class="img-fluid rounded-start" alt="{{ img.alt }}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ self.title }}</h5>
+          <p class="card-text">Set ID: {{ self.set_id }}</p>
+          {% if self.set_pieces %}
+            <p class="card-text"><small class="text-muted">{{ self.set_pieces }} pieces</small></p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
