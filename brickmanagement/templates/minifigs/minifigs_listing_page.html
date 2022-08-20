@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load wagtailimages_tags %}
+
+
+{% block content%}
+    <div class="row">
+        {% for minifig in minifigs %}
+            <div class="row">
+                <div class="col-sm-3">
+                    {% image minifig.minifig_image fill-75x75 as minifig_img %}
+                    <a href="{{ minifig.url }}">
+                        <img src="{{ minifig_img.url }}" alt="{{ minifig_img.alt }}">
+                    </a>
+                </div>
+                <div class="col-sm-9"><a href="{{ minifig.url }}">{{ minifig.title }}</a> ({{ minifig.minifig_variant }})</div>
+            </div>
+        {% endfor%}
+    </div>
+{% endblock %}

@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "subscribers",
     "blog",
     "sets",
+    "minifigs",
     "site_settings",
     "wagtail.contrib.settings",
     "wagtail.contrib.forms",
